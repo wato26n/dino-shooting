@@ -183,9 +183,9 @@ const BadStatus = {
 }
 
 //--------------------------------------------------------
-const SPPCool = 0;         //場所ごとのクールタイム(秒)
-const SPcooldown = 0;      //全体のクールタイム(秒)
-const SPprobability = 0.01;  //スポーン確率(一秒に分の１)
+const SPPCool = 3;         //場所ごとのクールタイム(秒)
+const SPcooldown = 1;      //全体のクールタイム(秒)
+const SPprobability = 1.5;  //スポーン確率(一秒に分の１)
 
 let BeamFrequency = 0.3; //攻撃頻度(秒)
 
@@ -421,9 +421,12 @@ function moveEnemy() {
     if (BeamHitCheck(enemy)) {
       enemy.HP -= 1;
       enemy.shotAbility(enemy);
+      if (enemy.HP <= 0) {
+        enemy.deadAbility(enemy);
+      }
     }
   }
-  
+
   game.enemys = game.enemys.filter(enemy => !hitCheck(enemy) && enemy.HP > 0);
 
   //console.log("moveEnemy()")
@@ -761,6 +764,10 @@ function addStatus() {
         DamageEffect(E);
       },
 
+      deadAbility : (E) => {
+        
+      },
+
       clockAbility : (E) => {
         
       },
@@ -798,6 +805,10 @@ function addStatus() {
       back : 1,
       shotAbility : (E) => {
         DamageEffect(E);
+      },
+
+      deadAbility : (E) => {
+        
       },
 
       clockAbility : (E) => {
@@ -842,6 +853,10 @@ function addStatus() {
         
       },
 
+      deadAbility : (E) => {
+        
+      },
+
       SPAbility : (E) => {
         
       },
@@ -878,6 +893,10 @@ function addStatus() {
       back : 1,
       shotAbility : (E) => {
         DamageEffect(E);
+      },
+
+      deadAbility : (E) => {
+        
       },
 
       clockAbility : (E) => {
@@ -917,6 +936,10 @@ function addStatus() {
         DamageEffect(E);
       },
 
+      deadAbility : (E) => {
+        
+      },
+
       clockAbility : (E) => {
         
       },
@@ -952,6 +975,10 @@ function addStatus() {
       back : 1.2,
       shotAbility : (E) => {
         DamageEffect(E);
+      },
+
+      deadAbility : (E) => {
+        
       },
 
       clockAbility : (E) => {
@@ -1088,6 +1115,10 @@ function addStatus() {
         DamageEffect(E);
       },
 
+      deadAbility : (E) => {
+        
+      },
+
       clockAbility : (E) => {
         if (E.accel < 0.5) E.speed = 2 + (16 * (E.accel ** 6)) * 8;
         else E.speed = 2 + (1 - ((-2 * E.accel + 2) ** 8) / 2) * 8;
@@ -1125,6 +1156,10 @@ function addStatus() {
       back : 0,
       shotAbility : (E) => {
         DamageEffect(E);
+      },
+
+      deadAbility : (E) => {
+        
       },
 
       clockAbility : (E) => {
@@ -1168,6 +1203,10 @@ function addStatus() {
 
       },
 
+      deadAbility : (E) => {
+        
+      },
+
       SPAbility : (E) => {
         
       },
@@ -1207,6 +1246,10 @@ function addStatus() {
 
       },
 
+      deadAbility : (E) => {
+        
+      },
+
       SPAbility : (E) => {
 
       },
@@ -1238,6 +1281,10 @@ function addStatus() {
       back : 0.8,
       shotAbility : (E) => {
         DamageEffect(E);
+      },
+
+      deadAbility : (E) => {
+        
       },
 
       clockAbility : (E) => {
